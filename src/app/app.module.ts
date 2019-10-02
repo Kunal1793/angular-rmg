@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToyotaAccountComponent } from './toyota-account/toyota-account.component';
 import { NewRequestComponent } from './new-request/new-request.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToyotaHomeComponent } from './toyota-account/toyota-home/toyota-home.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +28,16 @@ import { NewRequestComponent } from './new-request/new-request.component';
     HomeComponent,
     LoginComponent,
     ToyotaAccountComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    ToyotaHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

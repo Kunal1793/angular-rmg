@@ -14,9 +14,15 @@ export class ToyotaAccountComponent implements OnInit {
   DisplayCard: boolean = false;
   DisplaySingleToyota : Accounts;
   DisplayMessage: boolean = false;
+  minDate: Date;
+  NewStartDate: Date;
+  NewEndDate: Date;
 
 
-  constructor(private operationsService: OperationsService) { }
+
+  constructor(private operationsService: OperationsService) {
+    this.minDate = new Date();
+   }
 
   ngOnInit() {
     this.operationsService.getToyotaDetails().subscribe(
@@ -37,11 +43,17 @@ export class ToyotaAccountComponent implements OnInit {
   }
 
   SubmitForm(AccountsForm: NgForm) {
-    console.log(AccountsForm);
+    this.operationsService.PostRequestDetails(AccountsForm.value).subscribe(
+    (Data)=>{console.log(Data)});
     this.ToyotaAccount.push(AccountsForm.value);
-    this.DisplayMessage = true;
     console.log(this.ToyotaAccount);
     AccountsForm.resetForm();
+  }
+
+  SendToCompetency(AccountsRequest: Accounts) {
+    this.operationsService.ForwardRequestToCompetency(AccountsRequest);
+    console.log(AccountsRequest);
+
   }
 
 }
