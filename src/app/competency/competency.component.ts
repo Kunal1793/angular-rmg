@@ -12,7 +12,7 @@ export class CompetencyComponent implements OnInit {
   OnProjectEmployees: Competency[];
   SingleAccountRequest: Accounts;
   ShowRequest = false;
-
+  filteredProducts: Competency[];
 
   constructor(private operationService: OperationsService) { }
 
@@ -20,26 +20,44 @@ export class CompetencyComponent implements OnInit {
     this.operationService.GetProjectEmployees().subscribe(
       (ProjectData)=> {
         this.OnProjectEmployees = ProjectData
+        this.filteredProducts = this.OnProjectEmployees
       });
 
   }
+  _listFilter: string;
+  get listFilter():string{
+    return this._listFilter;
+}
+set listFilter(value: string){
+  
+    this._listFilter = value;
+    this.filteredProducts = this._listFilter ? this.performFilter(this.listFilter) : this.OnProjectEmployees;
+}
+ 
+performFilter(filterBy: string): Competency[]{
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.filteredProducts.filter((OnProjectEmployees: Competency) => 
+    OnProjectEmployees.EmployeeName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+}
+
+
   OnBench(){
     this.operationService.GetOnBenchEmployees().subscribe(
       (OnBenchData)=> {
-        this.OnProjectEmployees = OnBenchData
+        this.filteredProducts = OnBenchData
       });
   }
 
   OnProject(){
     this.operationService.GetProjectEmployees().subscribe(
       (ProjectData)=> {
-        this.OnProjectEmployees = ProjectData
+        this.filteredProducts = ProjectData
       });
   }
   OnTraining(){
     this.operationService.GetOnTraningEmployees().subscribe(
       (OnTrainingData)=> {
-        this.OnProjectEmployees = OnTrainingData
+        this.filteredProducts = OnTrainingData
       });
   }
 
@@ -47,6 +65,6 @@ export class CompetencyComponent implements OnInit {
     this.ShowRequest = !this.ShowRequest;
     this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
     console.log(this.SingleAccountRequest);
-
   }
+
 }

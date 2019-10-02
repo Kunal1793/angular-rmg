@@ -3,28 +3,28 @@
       "NumDevelopers": "5",
       "Technology": "Java",
       "JobDescription":"Core Java, Spring Boot, Hibernate, REST API, SQL, React.js, AWS",
-      "StartDate": "4/12/2015",
-      "EndDate": "5/15/2016"
+      "StartDate": "9/24/2019",
+      "EndDate": "5/15/2020"
     },
     {
         "NumDevelopers": "10",
         "Technology": ".NET",
         "JobDescription":"C#, ASP.NET, ASP.NET MVC, WEB API, Angular 2+, Azure, SQl Server",
-        "StartDate": "2/13/2016",
-        "EndDate": "3/21/2017"
+        "StartDate": "9/26/2019",
+        "EndDate": "6/21/2020"
     },
     {
         "NumDevelopers": "8",
         "Technology": ".NET",
         "JobDescription":"C#, ASP.NET, ASP.NET MVC, WEB API, Angular 2+, Azure, Mongo DB",
-        "StartDate": "6/8/2017",
-        "EndDate": "11/19/2018"
+        "StartDate": "9/28/2019",
+        "EndDate": "8/19/2020"
     },
     {
         "NumDevelopers": "5",
         "Technology": "Java",
         "JobDescription":"Core Java, J2EE, Spring MVC, REST API, MySQL, React.js, AWS",
-        "StartDate": "4/5/2018",
-        "EndDate": "8/9/2019"
+        "StartDate": "10/1/2019",
+        "EndDate": "10/9/2020"
     }
   ]
