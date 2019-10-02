@@ -52,6 +52,7 @@ export class ToyotaAccountComponent implements OnInit {
 
   SendToCompetency(AccountsRequest: Accounts) {
     this.operationsService.ForwardRequestToCompetency(AccountsRequest);
+    alert('Successfully Sent to Competency!');
     console.log(AccountsRequest);
 
   }

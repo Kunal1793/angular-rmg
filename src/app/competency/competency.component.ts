@@ -14,7 +14,7 @@ export class CompetencyComponent implements OnInit {
 
   SingleAccountRequest: Accounts;
   ShowRequest = false;
-
+  filteredProducts: Competency[];
 
   products: Competency[] = [];
   filteredProducts: Competency[];
@@ -41,12 +41,18 @@ set listFilter(value: string){
 }
  
 
-  
 performFilter(filterBy: string): Competency[]{
     filterBy = filterBy.toLocaleLowerCase();
-    return this.OnProjectEmployees.filter((OnProjectEmployees: Competency) => 
+    return this.filteredProducts.filter((OnProjectEmployees: Competency) => 
     OnProjectEmployees.EmployeeName.toLocaleLowerCase().indexOf(filterBy) !== -1);
 }
+
+
+
+
+  
+
+
   OnBench(){
     this.operationService.GetOnBenchEmployees().subscribe(
       (OnBenchData)=> {
@@ -66,12 +72,13 @@ performFilter(filterBy: string): Competency[]{
         this.filteredProducts = OnTrainingData
       });
 
-  // DisplayIncomingRequest() {
-  //   this.ShowRequest = !this.ShowRequest;
-  //   this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
-  //   console.log(this.SingleAccountRequest);
 
-  // }
- 
+  DisplayIncomingRequest() {
+    this.ShowRequest = !this.ShowRequest;
+    this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
+    console.log(this.SingleAccountRequest);
+
+  
   }
+
 }
