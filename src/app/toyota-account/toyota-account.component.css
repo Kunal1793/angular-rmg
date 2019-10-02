@@ -5,7 +5,7 @@ h2 {
     margin-left: 75%;
 }
 .NewRequest {
-    margin: 15px;
+    margin: 10px;
 }
 
 .modal{
@@ -25,4 +25,8 @@ h2 {
 .btn-primary {
     margin-right: 15px;
 
+}
+
+.Error {
+    color: brown
 }

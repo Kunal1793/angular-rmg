@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Competency} from './compentency.model';
 import { OperationsService } from '../operations.service';
+import { Accounts } from '../accounts/accounts.model';
 
 @Component({
   selector: 'app-competency',
@@ -9,8 +10,14 @@ import { OperationsService } from '../operations.service';
 })
 export class CompetencyComponent implements OnInit {
   OnProjectEmployees: Competency[];
+
+  SingleAccountRequest: Accounts;
+  ShowRequest = false;
+
+
   products: Competency[] = [];
   filteredProducts: Competency[];
+
 
   constructor(private operationService: OperationsService) { }
 
@@ -45,6 +52,7 @@ performFilter(filterBy: string): Competency[]{
         this.filteredProducts = OnBenchData
       });
   }
+
   OnProject(){
     this.operationService.GetProjectEmployees().subscribe(
       (ProjectData)=> {
@@ -56,5 +64,12 @@ performFilter(filterBy: string): Competency[]{
       (OnTrainingData)=> {
         this.filteredProducts = OnTrainingData
       });
+  }
+
+  DisplayIncomingRequest() {
+    this.ShowRequest = !this.ShowRequest;
+    this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
+    console.log(this.SingleAccountRequest);
+
   }
 }

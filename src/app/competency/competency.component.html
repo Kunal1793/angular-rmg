@@ -1,8 +1,11 @@
 <div class="container">
   <div class="Employees">
+    
         <h2>Welcome to Competency Page</h2>
             <br>
-             
+
+               <form>
+
               <hr>
               <img src="https://www.openaccessgovernment.org/wp-content/uploads/2018/09/dreamstime_s_115214581.jpg" width="100%" height="500px">
               <br><br>
@@ -39,5 +42,15 @@
             <button type="button" class="btn btn-info" (click)=OnProject()>On Project</button>
             <button type="button" class="btn btn-info"(click)="OnBench()">On Bench</button>
             <button type="button" class="btn btn-info"(click)=" OnTraining()" >In Training</button>
+        </div> 
+            
+            <button (click)="DisplayIncomingRequest()">Show New Requests</button>
+            <div *ngIf="ShowRequest">
+            <p>Number of Developers: {{SingleAccountRequest.NumDevelopers}}</p>
+            <p>Technology: {{SingleAccountRequest.Technology}}</p>
+            <p>Job Description: {{SingleAccountRequest.JobDescription}}</p>
+            <p>Start Date: {{SingleAccountRequest.StartDate | date:"MM/dd/yy"}}</p>
+            <p>End Date: {{SingleAccountRequest.EndDate | date:"MM/dd/yy"}}</p>
+          </div>
         </div>
 </div>

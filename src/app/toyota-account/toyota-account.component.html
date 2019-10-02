@@ -1,8 +1,8 @@
 <div class="PreviousRequests">
         <div class="container">
-            <h2>Welcome to TOYOTA Accounts Page</h2>
+            <h2>List of Resource Requests</h2>
                  <div class="NewRequest">
-                <button class="btn btn-primary" id="ResourceButton" data-toggle="modal" data-target="#NewRequestModal">Raise new Resource Request</button>
+                <button class="btn btn-outline-secondary" id="ResourceButton" data-toggle="modal" data-target="#NewRequestModal">Raise new Resource Request</button>
                  </div>
                 <table class="table">
                         <thead>
@@ -13,7 +13,7 @@
                             <th scope="col">Job Description</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">End Date</th>
-                            <th scope="col">Action</th>
+                            <th colspan="2">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -22,12 +22,21 @@
                             <td>{{Account.NumDevelopers}}</td>
                             <td>{{Account.Technology}}</td>
                             <td>{{Account.JobDescription}}</td>
-                            <td>{{Account.StartDate}}</td>
-                            <td>{{Account.EndDate}}</td>
-                            <td><button class="btn btn-success" (click)="DisplayAccount(Account)">Status</button></td>
+                            <td>{{Account.StartDate | date:"MM/dd/yy"}}</td>
+                            <td>{{Account.EndDate | date:"MM/dd/yy"}}</td>
+                            <td>
+                              <button class="btn btn-success" (click)="DisplayAccount(Account)">View</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-info" (click)="SendToCompetency(Account)">Send to Competency</button>
+                            </td>
+
                           </tr>
                       </tbody>
+                      <button class="btn btn-outline-primary" routerLink="/Accounts">Back to Toyota Home Page</button>
+
               </table>
+
 
               <div class="modal fade" id="NewRequestModal">
                   <div class="modal-dialog modal-lg">
@@ -40,16 +49,16 @@
                          </div>
                         </div>
 
-                        
-
                         <div class="modal-body" >
-                            <form #NewRequestForm="ngForm" (submit)="SubmitForm(NewRequestForm)">
+                            <form name="form" #NewRequestForm="ngForm" (ngSubmit)="SubmitForm(NewRequestForm)">
 
                                 <div class="form-group">
                                     <label for="SelectRequirements">
-                                      <strong>Select the Number of Developers Required:</strong>
+                                    <strong>Select the Number of Developers Required:</strong>
                                     </label>
-                                    <select class="form-control" id="NumDevelopers" required ngModel name="NumDevelopers">
+
+                                    <select class="form-control" id="NumDevelopers" ngModel name="NumDevelopers"
+                                    #NumDevelopersControl="ngModel" required>
                                         <option value="">Select...</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -57,32 +66,82 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
+
+                                </div>
+                                
+                                <div *ngIf="NumDevelopersControl.touched && NumDevelopersControl.invalid">
+                                    <p class="Error">*Number of developers required</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="SelectTechnology"><strong>Select the Technology:</strong></label>
-                                    <select class="form-control" id="Technology" required ngModel name="Technology">
+                                    <label for="SelectTechnology">
+                                      <strong>Select the Technology:</strong>
+                                    </label>
+
+                                    <select class="form-control" id="Technology" ngModel name="Technology" 
+                                    #TechnologyControl="ngModel" required>
                                         <option value="">Select...</option>
                                         <option value="Java">Java</option>
                                         <option value=".NET">.NET</option>
                                     </select>
                                 </div>
-                    
-                                <div class="form-group">
-                                    <label for="JobDescription"><strong>Job Description:</strong></label>
-                                    <textarea class="form-control" rows="5" id="JobDescription" ngModel name="JobDescription"></textarea>
+
+                                <div *ngIf="TechnologyControl.touched && TechnologyControl.invalid">
+                                    <p class="Error">*Technology is required</p>
                                 </div>
                     
                                 <div class="form-group">
-                                    <label class="Date1"><strong>Start Date:</strong></label>
-                                    <input type="date"  class="form-control" id="StartDate" ngModel name="StartDate">
+
+                                    <label for="JobDescription">
+                                      <strong>Job Description:</strong>
+                                    </label>
+
+                                    <textarea class="form-control" rows="5" id="JobDescription" ngModel name="JobDescription" 
+                                    #JobDescriptionControl="ngModel" required>
+                                  </textarea>
                                 </div>
-                    
-                                <div class="form-group">
-                                    <label class="Date1"><strong>End Date:</strong></label>
-                                    <input type="date"  class="form-control" id="EndDate" ngModel name="EndDate">
+                                
+                                <div *ngIf="JobDescriptionControl.touched && JobDescriptionControl.invalid">
+                                    <p class="Error">*Job Description is required</p>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-12 col-md-6 form-group">
+                                        <label class="StartDate"><strong>Start Date:</strong></label>
+                                        <input 
+                                          placeholder="Select Start Date"
+                                          class="form-control"
+                                          placement="bottom left"
+                                          bsDatepicker 
+                                          ngModel name="StartDate" 
+                                          #StartDateControl="ngModel" required [minDate]="minDate">
+                                    </div>
+                                </div>
+
+                                
+                                <div *ngIf="StartDateControl.touched && StartDateControl.invalid">
+                                    <p class="Error">*Start Date is required</p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-12 col-md-6 form-group">
+                                        <label class="EndDate"><strong>End Date:</strong></label>
+                                        <input 
+                                          placeholder="Select End Date"
+                                          class="form-control"
+                                          placement="bottom left"
+                                          bsDatepicker 
+                                          ngModel name="EndDate" 
+                                          #EndDateControl="ngModel" required [minDate]="minDate">
+                                    </div>
+                                </div>
+                                
+                                <div *ngIf="EndDateControl.touched && EndDateControl.invalid">
+                                    <p class="Error">*End Date is required</p>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary" [disabled]="NewRequestForm.invalid">Submit</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </form>
                           </div> 
@@ -110,10 +169,10 @@
                     <p id="StartDate">{{DisplaySingleToyota.JobDescription}}</p>
                     
                     <label><strong>Start Date</strong></label>
-                    <p id="StartDate">{{DisplaySingleToyota.StartDate}}</p>
+                    <p id="StartDate">{{DisplaySingleToyota.StartDate| date:"MM/dd/yy"}}</p>
                     
                     <label><strong>End Date</strong></label>
-                    <p id="EndDate">{{DisplaySingleToyota.EndDate}}</p>
+                    <p id="EndDate">{{DisplaySingleToyota.EndDate | date:"MM/dd/yy" }}</p>
                     <button class="btn btn-primary" (click)="CancelCard()">Cancel</button>
                 </div>
             </div>
