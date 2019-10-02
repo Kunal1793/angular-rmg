@@ -10,6 +10,7 @@ import { Accounts } from '../accounts/accounts.model';
 })
 export class CompetencyComponent implements OnInit {
   OnProjectEmployees: Competency[];
+  
 
   SingleAccountRequest: Accounts;
   ShowRequest = false;
@@ -64,12 +65,13 @@ performFilter(filterBy: string): Competency[]{
       (OnTrainingData)=> {
         this.filteredProducts = OnTrainingData
       });
-  }
 
-  DisplayIncomingRequest() {
-    this.ShowRequest = !this.ShowRequest;
-    this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
-    console.log(this.SingleAccountRequest);
+  // DisplayIncomingRequest() {
+  //   this.ShowRequest = !this.ShowRequest;
+  //   this.SingleAccountRequest = this.operationService.DisplayAccountsRequest();
+  //   console.log(this.SingleAccountRequest);
 
+  // }
+ 
   }
 }
