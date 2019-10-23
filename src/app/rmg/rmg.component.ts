@@ -1,33 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import {Competency} from './compentency.model';
+import {Competency} from '../competency/compentency.model';
 import { OperationsService } from '../operations.service';
 import { Accounts } from '../accounts/accounts.model';
-
 @Component({
-  selector: 'app-competency',
-  templateUrl: './competency.component.html',
-  styleUrls: ['./competency.component.css']
+  selector: 'app-rmg',
+  templateUrl: './rmg.component.html',
+  styleUrls: ['./rmg.component.css']
 })
-export class CompetencyComponent implements OnInit {
+export class RMGComponent implements OnInit {
   OnProjectEmployees: Competency[];
   
 
   SingleAccountRequest: Accounts;
   ShowRequest = false;
-  filteredProducts: Competency[] = [];
+  filteredProducts: Competency[];
 
   products: Competency[] = [];
+  //DisplayCard: boolean = false;
+  DisplaySingleAccount : Competency;
+
+  CompanyAccounts : Accounts[] = [];
+
+  DisplayAccount(SingleAccount: Competency) {
+    //this.DisplayCard = true;
+    
+    this.DisplaySingleAccount = SingleAccount;
+
   
-
-
+  }
   constructor(private operationService: OperationsService) { }
 
   ngOnInit() {
-    this.operationService.GetProjectEmployees().subscribe(
-      (ProjectData)=> {
-        this.OnProjectEmployees = ProjectData
-        this.filteredProducts = ProjectData
-        console.log(this.filteredProducts);
+    this.operationService.GetOnTraningEmployees().subscribe(
+      (OnTrainingData)=> {
+        this.OnProjectEmployees = OnTrainingData
+        this.filteredProducts = this.OnProjectEmployees
       });
 
   }
@@ -48,31 +55,11 @@ performFilter(filterBy: string): Competency[]{
     OnProjectEmployees.employeeName.toLocaleLowerCase().indexOf(filterBy) !== -1);
 }
 
-
-
-
-  
-
-
-  OnBench(){
-    this.operationService.GetOnBenchEmployees().subscribe(
-      (OnBenchData)=> {
-        this.filteredProducts = OnBenchData
-      });
-  }
-
-  OnProject(){
-    this.operationService.GetProjectEmployees().subscribe(
-      (ProjectData)=> {
-        this.filteredProducts = ProjectData
-      });
-  }
-  OnTraining(){
-    this.operationService.GetOnTraningEmployees().subscribe(
-      (OnTrainingData)=> {
-        this.filteredProducts = OnTrainingData
-      });
-
+OnTraining(){
+  this.operationService.GetOnTraningEmployees().subscribe(
+    (OnTrainingData)=> {
+      this.filteredProducts = OnTrainingData
+    });
   }
   DisplayIncomingRequest() {
     this.ShowRequest = !this.ShowRequest;
@@ -81,4 +68,5 @@ performFilter(filterBy: string): Competency[]{
 
 
 }
+
 }

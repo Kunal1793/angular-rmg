@@ -15,7 +15,7 @@ export class OperationsService {
   AccountsData: Accounts;
 
   GetProjectEmployees() {
-    return this.Http.get<Competency[]>('assets/OnProject.json');
+    return this.Http.get<Competency[]>('http://localhost:56819/api/Competancy/Getemployee');
   }
 
   getToyotaDetails() {
@@ -23,10 +23,10 @@ export class OperationsService {
   }
 
   GetOnBenchEmployees() {
-    return this.Http.get<Competency[]>('assets/OnBench.json');
+    return this.Http.get<Competency[]>('http://localhost:56819/api/OnBeanchCompetancy/Getemployee');
   }
   GetOnTraningEmployees() {
-    return this.Http.get<Competency[]>('assets/OnTraining.json');
+    return this.Http.get<Competency[]>('http://localhost:56819/api/OnTraningCompetancy/Getemployee');
   }
 
   PostRequestDetails(RequestData: Accounts) {

@@ -1,8 +1,10 @@
 export class Competency {
-    EmployeeName: string;
-    CurrentProject: string;
-    Email: string;
-    ContactNumber: string;
+    id: number;
+    employeeName: string;
+    currentProject: string;
+    email: string;
+    contactNumber: string;
     Technology: string;
-    Experience: string;
+    experience: string;
+    src:string;
 }

@@ -5,7 +5,8 @@
       "Email": "Aditya@example.com",
       "ContactNumber": "(203)583-9169",
       "Technology": "Java",
-      "Experience": "3"
+      "Experience": "3",
+      "src":"assets/shreeram.jpg"
     },
     {
       "EmployeeName": "Cristiano Ronaldo",
@@ -13,7 +14,8 @@
       "Email": "Shethiya@example.com",
       "ContactNumber": "(203)584-9269",
       "Technology": "Angular",
-      "Experience": "2"
+      "Experience": "2",
+      "src":"assets/Aditya.jpg"
     },
     {
       "EmployeeName": "James Rodriguez",

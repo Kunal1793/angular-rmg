@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ToyotaAccountComponent } from './toyota-account/toyota-account.component';
 import { NewRequestComponent } from './new-request/new-request.component';
 import { ToyotaHomeComponent } from './toyota-account/toyota-home/toyota-home.component';
+import { RMGComponent } from './rmg/rmg.component';
 
 const routes: Routes=[
     {path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes=[
     {path: 'Requests', component: ToyotaAccountComponent},
     {path: 'Competency', component: CompetencyComponent},
     {path: 'NewRequest', component: NewRequestComponent},
-    {path: 'Login', component: LoginComponent}
+    {path: 'Login', component: LoginComponent},
+    {path: 'RMG', component: RMGComponent}
 
     // Create the Routes
 ];

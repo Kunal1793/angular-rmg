@@ -16,6 +16,7 @@ import { NewRequestComponent } from './new-request/new-request.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToyotaHomeComponent } from './toyota-account/toyota-home/toyota-home.component';
+import { RMGComponent } from './rmg/rmg.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ToyotaHomeComponent } from './toyota-account/toyota-home/toyota-home.co
     LoginComponent,
     ToyotaAccountComponent,
     NewRequestComponent,
-    ToyotaHomeComponent
+    ToyotaHomeComponent,
+    RMGComponent
   ],
   imports: [
     BrowserModule,
